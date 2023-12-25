@@ -9,14 +9,14 @@ public class Main {
     public static void main(String[] args) {
         Configuration config = new Configuration();
 
-        config.configure();
+        config.addAnnotatedClass(org.example.entities.Student.class);
         SessionFactory sessionFactory= config.buildSessionFactory();
         Session session= sessionFactory.openSession();
         try {
             session.beginTransaction();
             Student student=new Student();
-            student.setId(4);
-            student.setStudentName("Anna Smith");
+            student.setId(5);
+            student.setStudentName("Maggie Smith");
             session.persist(student);
             session.getTransaction().commit();
         }
