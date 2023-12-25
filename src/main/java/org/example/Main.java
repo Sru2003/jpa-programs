@@ -12,8 +12,8 @@ public class Main {
             em.getTransaction().begin();
 
             Student student=new Student();
-            student.setId(1);
-            student.setStudentName("Srushti Pednekar");
+            student.setId(2);
+            student.setStudentName("Sakshi Pednekar");
 
             em.persist(student);
             em.getTransaction().commit();
