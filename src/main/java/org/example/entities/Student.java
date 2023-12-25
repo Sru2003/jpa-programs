@@ -1,7 +1,7 @@
 package org.example.entities;
-import jakarta.persistence.Column;
-import  jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.Date;
 
 @Entity
 public class Student {
@@ -11,6 +11,13 @@ public class Student {
     @Column(name = "student_name")
     private String studentName;
 
+    private int rollno;
+
+    @Temporal(TemporalType.DATE)
+    private Date birthdate;
+    @Transient
+    @Column(name = "full_name")
+    private String fullName;
     public int getRollno() {
         return rollno;
     }
@@ -19,7 +26,6 @@ public class Student {
         this.rollno = rollno;
     }
 
-    private int rollno;
 
     public long getId() {
         return id;
@@ -35,5 +41,13 @@ public class Student {
 
     public void setStudentName(String studentName) {
         this.studentName = studentName;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 }
