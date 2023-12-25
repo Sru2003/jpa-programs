@@ -11,6 +11,16 @@ public class Student {
     @Column(name = "student_name")
     private String studentName;
 
+    public int getRollno() {
+        return rollno;
+    }
+
+    public void setRollno(int rollno) {
+        this.rollno = rollno;
+    }
+
+    private int rollno;
+
     public long getId() {
         return id;
     }
