@@ -1,29 +1,30 @@
 package org.example;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
 import org.example.entities.Student;
-import org.example.persistence.CustomPersistenceUnitInfo;
-import org.hibernate.jpa.HibernatePersistenceProvider;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 
-import java.util.HashMap;
+import org.hibernate.cfg.Configuration;
 
 public class Main {
     public static void main(String[] args) {
-        EntityManagerFactory emf= new HibernatePersistenceProvider().createContainerEntityManagerFactory(new CustomPersistenceUnitInfo(),new HashMap<>());
-        EntityManager em= emf.createEntityManager();
+        Configuration config = new Configuration();
+
+        config.configure();
+        SessionFactory sessionFactory= config.buildSessionFactory();
+        Session session= sessionFactory.openSession();
         try {
-            em.getTransaction().begin();
-
+            session.beginTransaction();
             Student student=new Student();
-            student.setId(3);
-            student.setStudentName("Sachin Pednekar");
-
-            em.persist(student);
-            em.getTransaction().commit();
+            student.setId(4);
+            student.setStudentName("Anna Smith");
+            session.persist(student);
+            session.getTransaction().commit();
         }
         finally {
-            em.close();
+            session.close();
+            sessionFactory.close();
         }
+
+
     }
 }
